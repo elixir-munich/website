@@ -1,4 +1,4 @@
-# ElixirMunich
+# Elixir & Erlang Munich Website
 
 To start your Phoenix server:
 
