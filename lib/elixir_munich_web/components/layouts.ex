@@ -35,38 +35,157 @@ defmodule ElixirMunichWeb.Layouts do
 
   def app(assigns) do
     ~H"""
-    <header class="navbar px-4 sm:px-6 lg:px-8">
-      <div class="flex-1">
-        <a href="/" class="flex-1 flex w-fit items-center gap-2">
-          <img src={~p"/images/logo.svg"} width="36" />
-          <span class="text-sm font-semibold">v{Application.spec(:phoenix, :vsn)}</span>
-        </a>
-      </div>
-      <div class="flex-none">
-        <ul class="flex flex-column px-1 space-x-4 items-center">
-          <li>
-            <a href="https://phoenixframework.org/" class="btn btn-ghost">Website</a>
-          </li>
-          <li>
-            <a href="https://github.com/phoenixframework/phoenix" class="btn btn-ghost">GitHub</a>
-          </li>
-          <li>
-            <.theme_toggle />
-          </li>
-          <li>
-            <a href="https://hexdocs.pm/phoenix/overview.html" class="btn btn-primary">
-              Get Started <span aria-hidden="true">&rarr;</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </header>
+    <div
+      class="min-h-screen"
+      style="background: linear-gradient(135deg, rgba(59, 7, 100, 0.8), rgba(45, 16, 84, 0.9)), url('/images/munich-skyline-bg.jpg') center/cover no-repeat;"
+    >
+      <header class="navbar bg-base-100/10 backdrop-blur-md border-b border-white/20 relative z-40">
+        <div class="navbar-start pl-4">
+          <a
+            href="/"
+            class="text-white hover:text-purple-200 transition-colors"
+          >
+            <div class="font-bold text-xl">
+              Elixir & Erlang Munich
+            </div>
+          </a>
+        </div>
 
-    <main class="px-4 py-20 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl space-y-4">
+        <div class="navbar-end">
+          <ul class="menu menu-horizontal px-1 gap-1 hidden lg:flex flex-nowrap">
+            <li>
+              <a
+                href="https://github.com/elixir-munich/companies"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-ghost btn-sm text-white hover:bg-white/20 text-sm px-3 py-2 whitespace-nowrap"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z" />
+                </svg>
+                Companies
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/elixir-munich/planning/issues/new?template=talk.yml"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-ghost btn-sm text-white hover:bg-white/20 text-sm px-3 py-2 whitespace-nowrap"
+              >
+                <.icon name="hero-presentation-chart-bar" class="w-4 h-4" /> Submit Talk
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.meetup.com/elixir-munich/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-ghost btn-sm text-white hover:bg-white/20 text-sm px-3 py-2 whitespace-nowrap"
+              >
+                <img src={~p"/images/meetup-logo.svg"} alt="Meetup" class="w-4 h-4" /> Meetup
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://luma.com/elixir-munich"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-ghost btn-sm text-white hover:bg-white/20 text-sm px-3 py-2 whitespace-nowrap"
+              >
+                <img src={~p"/images/luma-logo.svg"} alt="Luma" class="w-4 h-4" /> Luma
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://join.slack.com/t/elixir-lang/shared_invite/zt-29w4dnkie-VkuKAAiVHSMmKakxrVA27w"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-ghost btn-sm text-white hover:bg-white/20 text-sm px-3 py-2 whitespace-nowrap"
+              >
+                <img src={~p"/images/slack-logo.svg"} alt="Slack" class="w-4 h-4" /> Slack (#munich)
+              </a>
+            </li>
+          </ul>
+
+          <div class="dropdown dropdown-end lg:hidden relative z-50">
+            <div tabindex="0" role="button" class="btn btn-ghost btn-md text-white px-4 py-2">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                >
+                </path>
+              </svg>
+            </div>
+            <ul
+              tabindex="0"
+              class="dropdown-content menu p-2 shadow-xl bg-[#1a0f2e]/95 backdrop-blur-md border border-white/20 rounded-xl w-64 mt-2 z-50 fixed"
+            >
+              <li>
+                <a
+                  href="https://github.com/elixir-munich/companies"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="py-3 px-4 text-base text-white hover:bg-white/20 rounded-lg"
+                >
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z" />
+                  </svg>
+                  Companies
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/elixir-munich/planning/issues/new?template=talk.yml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="py-3 px-4 text-base text-white hover:bg-white/20 rounded-lg"
+                >
+                  <.icon name="hero-presentation-chart-bar" class="w-4 h-4" /> Submit Talk
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.meetup.com/elixir-munich/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-3 py-3 px-4 text-base text-white hover:bg-white/20 rounded-lg"
+                >
+                  <img src={~p"/images/meetup-logo.svg"} alt="Meetup" class="w-4 h-4" /> Meetup
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://luma.com/elixir-munich"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-3 py-3 px-4 text-base text-white hover:bg-white/20 rounded-lg"
+                >
+                  <img src={~p"/images/luma-logo.svg"} alt="Luma" class="w-4 h-4" /> Luma
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://join.slack.com/t/elixir-lang/shared_invite/zt-29w4dnkie-VkuKAAiVHSMmKakxrVA27w"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-3 py-3 px-4 text-base text-white hover:bg-white/20 rounded-lg"
+                >
+                  <img src={~p"/images/slack-logo.svg"} alt="Slack" class="w-4 h-4" /> Slack (#munich)
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <main class="flex-1">
         {render_slot(@inner_block)}
-      </div>
-    </main>
+      </main>
+    </div>
 
     <.flash_group flash={@flash} />
     """
@@ -111,43 +230,6 @@ defmodule ElixirMunichWeb.Layouts do
         {gettext("Attempting to reconnect")}
         <.icon name="hero-arrow-path" class="ml-1 size-3 motion-safe:animate-spin" />
       </.flash>
-    </div>
-    """
-  end
-
-  @doc """
-  Provides dark vs light theme toggle based on themes defined in app.css.
-
-  See <head> in root.html.heex which applies the theme before page load.
-  """
-  def theme_toggle(assigns) do
-    ~H"""
-    <div class="card relative flex flex-row items-center border-2 border-base-300 bg-base-300 rounded-full">
-      <div class="absolute w-1/3 h-full rounded-full border-1 border-base-200 bg-base-100 brightness-200 left-0 [[data-theme=light]_&]:left-1/3 [[data-theme=dark]_&]:left-2/3 transition-[left]" />
-
-      <button
-        class="flex p-2 cursor-pointer w-1/3"
-        phx-click={JS.dispatch("phx:set-theme")}
-        data-phx-theme="system"
-      >
-        <.icon name="hero-computer-desktop-micro" class="size-4 opacity-75 hover:opacity-100" />
-      </button>
-
-      <button
-        class="flex p-2 cursor-pointer w-1/3"
-        phx-click={JS.dispatch("phx:set-theme")}
-        data-phx-theme="light"
-      >
-        <.icon name="hero-sun-micro" class="size-4 opacity-75 hover:opacity-100" />
-      </button>
-
-      <button
-        class="flex p-2 cursor-pointer w-1/3"
-        phx-click={JS.dispatch("phx:set-theme")}
-        data-phx-theme="dark"
-      >
-        <.icon name="hero-moon-micro" class="size-4 opacity-75 hover:opacity-100" />
-      </button>
     </div>
     """
   end
