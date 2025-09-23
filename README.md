@@ -1,6 +1,6 @@
 # Elixir & Erlang Munich Website
 
-The official [website](https://elixir-munich.org) for the Elixir & Erlang Munich community, serving as the central hub for our community.
+The official [website](https://elixir-munich.org) for the Elixir & Erlang Munich community, serving as our central hub.
 
 ## Getting Started
 
