@@ -34,30 +34,41 @@
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
           <div class="card bg-base-100/10 backdrop-blur-md shadow-xl border border-white/20">
             <div class="card-body">
-              <div class="flex items-center justify-center h-32 text-white/50">
-                <div class="text-center">
-                  <svg
-                    class="w-12 h-12 mx-auto mb-2 opacity-50"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"
-                    >
-                    </path>
-                  </svg>
-                  <p class="text-sm">Bluesky posts coming soon!</p>
-                </div>
+              <div class="card-title text-white mb-4">
+                <img
+                  src={~p"/images/bluesky-logo.svg"}
+                  alt="Bluesky Logo"
+                  class="w-6 h-6 mr-2"
+                /> Bluesky Posts
               </div>
+              <script
+                type="module"
+                src="https://cdn.jsdelivr.net/npm/bsky-embed/dist/bsky-embed.es.js"
+                async
+              >
+              </script>
+              <bsky-embed
+                username="elixir-munich.org"
+                mode="dark"
+                limit="3"
+                load-more="true"
+                disable-images="true"
+                disable-videos="true"
+                disable-autoplay="true"
+              >
+              </bsky-embed>
             </div>
           </div>
 
           <div class="card bg-base-100/10 backdrop-blur-md shadow-xl border border-white/20">
             <div class="card-body">
+              <div class="card-title text-white mb-4">
+                <img
+                  src={~p"/images/mastodon-logo.svg"}
+                  alt="Mastodon Logo"
+                  class="w-6 h-6 mr-2"
+                /> Fediverse Posts
+              </div>
               <div class="flex items-center justify-center h-32 text-white/50">
                 <div class="text-center">
                   <svg
@@ -67,7 +78,7 @@
                   >
                     <path d="M21.258 13.99c-.274 0-.544-.02-.816-.02-2.944 0-5.26 2.274-5.26 5.08 0 2.83 2.338 5.12 5.26 5.12.272 0 .542-.02.816-.02 2.902 0 5.242-2.29 5.242-5.1s-2.34-5.06-5.242-5.06zm-18.718 0c-.274 0-.544-.02-.816-.02C-.22 13.97-2.536 16.244-2.536 19.05c0 2.83 2.338 5.12 5.26 5.12.272 0 .542-.02.816-.02 2.902 0 5.242-2.29 5.242-5.1s-2.34-5.06-5.242-5.06z" />
                   </svg>
-                  <p class="text-sm">Mastodon posts coming soon!</p>
+                  <p class="text-sm">Fediverse posts coming soon!</p>
                 </div>
               </div>
             </div>
