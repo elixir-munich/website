@@ -1,18 +1,26 @@
 # Elixir & Erlang Munich Website
 
-To start your Phoenix server:
+The official [website](https://elixir-munich.org) for the Elixir & Erlang Munich community, serving as the central hub for our community.
 
-* Run `mix setup` to install and setup dependencies
-* Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+## Getting Started
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+> We recommend using [Jujutsu](https://jj-vcs.github.io/jj/latest/) instead of Git for a better development experience.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+```sh
+jj git clone https://github.com/elixir-munich/website.git
+cd website
 
-## Learn more
+mix setup
 
-* Official website: https://www.phoenixframework.org/
-* Guides: https://hexdocs.pm/phoenix/overview.html
-* Docs: https://hexdocs.pm/phoenix
-* Forum: https://elixirforum.com/c/phoenix-forum
-* Source: https://github.com/phoenixframework/phoenix
+mix phx.server
+```
+
+Visit [`localhost:4000`](http://localhost:4000) to see the site.
+
+## Deployment
+
+The application automatically deploys to Fly.io when changes are pushed to the `main` branch.
+
+---
+
+Built with ❤️ by the Elixir & Erlang Munich community
