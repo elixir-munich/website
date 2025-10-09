@@ -192,7 +192,7 @@ defmodule ElixirMunichWeb.Layouts do
                   href="https://discord.gg/dPMFx94RUQ"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="btn btn-ghost btn-sm text-white hover:bg-white/20 text-sm px-3 py-2 whitespace-nowrap"
+                  class="flex items-center gap-3 py-3 px-4 text-base text-white hover:bg-white/20 rounded-lg"
                 >
                   <img src={~p"/images/discord-logo.svg"} alt="Discord" class="w-4 h-4" /> Discord
                 </a>
