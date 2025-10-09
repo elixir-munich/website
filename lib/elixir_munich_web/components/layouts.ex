@@ -106,6 +106,16 @@ defmodule ElixirMunichWeb.Layouts do
                 <img src={~p"/images/slack-logo.svg"} alt="Slack" class="w-4 h-4" /> Slack (#munich)
               </a>
             </li>
+            <li>
+              <a
+                href="https://discord.gg/dPMFx94RUQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-ghost btn-sm text-white hover:bg-white/20 text-sm px-3 py-2 whitespace-nowrap"
+              >
+                <img src={~p"/images/discord-logo.svg"} alt="Discord" class="w-4 h-4" /> Discord
+              </a>
+            </li>
           </ul>
 
           <div class="dropdown dropdown-end lg:hidden relative z-50">
@@ -175,6 +185,16 @@ defmodule ElixirMunichWeb.Layouts do
                   class="flex items-center gap-3 py-3 px-4 text-base text-white hover:bg-white/20 rounded-lg"
                 >
                   <img src={~p"/images/slack-logo.svg"} alt="Slack" class="w-4 h-4" /> Slack (#munich)
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://discord.gg/dPMFx94RUQ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-ghost btn-sm text-white hover:bg-white/20 text-sm px-3 py-2 whitespace-nowrap"
+                >
+                  <img src={~p"/images/discord-logo.svg"} alt="Discord" class="w-4 h-4" /> Discord
                 </a>
               </li>
             </ul>
