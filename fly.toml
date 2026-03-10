@@ -6,6 +6,7 @@
 app = 'elixir-munich-website'
 primary_region = 'fra'
 kill_signal = 'SIGTERM'
+swap_size_mb = 512
 
 [build]
 
