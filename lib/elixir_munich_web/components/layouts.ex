@@ -46,7 +46,7 @@ defmodule ElixirMunichWeb.Layouts do
             class="text-white hover:text-purple-200 transition-colors"
           >
             <div class="font-bold text-xl">
-              Elixir & Erlang Munich
+              Elixir, Erlang & Gleam Munich
             </div>
           </a>
         </div>

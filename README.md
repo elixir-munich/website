@@ -1,6 +1,6 @@
-# Elixir & Erlang Munich Website
+# Elixir, Erlang & Gleam Munich Website
 
-The official [website](https://elixir-munich.org) for the Elixir & Erlang Munich community, serving as our central hub.
+The official [website](https://elixir-munich.org) for the Elixir, Erlang & Gleam Munich community, serving as our central hub.
 
 ## Getting Started
 
@@ -23,4 +23,4 @@ The application automatically deploys to Fly.io when changes are pushed to the `
 
 ---
 
-Built with ❤️ by the Elixir & Erlang Munich community
+Built with ❤️ by the Elixir, Erlang & Gleam Munich community
