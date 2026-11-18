@@ -5,6 +5,7 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -14,38 +15,58 @@ jobs:
     name: Build and test
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Set up Elixir
-        uses: erlef/setup-beam@6a38171948a866c69ed72a5c19102478ec2ab81f # v1.20.4
+        uses: erlef/setup-beam@54075bcc5e249e4758d363f27d099f55d843f124 # v1.24.1
         with:
           version-file: .tool-versions
           version-type: strict
       - name: Restore dependencies cache
-        uses: actions/cache@v3
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: deps
           key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
           restore-keys: ${{ runner.os }}-mix-
       - name: Install dependencies
-        run: mix deps.get
+        run: mix setup
       - name: Compiles without warnings
         run: mix compile --warnings-as-errors
       - name: Check Formatting
         run: mix format --check-formatted
-      - name: Check for retired Hex packages
+      - name: Static analysis (Credo + ExSlop)
+        run: mix credo --strict
+      - name: Check for retired Hex packages and advisories
         run: mix hex.audit
       - name: Check Mix dependencies for known security vulnerabilities
         run: mix deps.audit
       - name: Run tests
         run: mix test
-  deploy:
-    name: Deploy to Fly.io
-    needs: build
-    runs-on: ubuntu-24.04
-    concurrency: deploy-group
-    steps:
-      - uses: actions/checkout@v4
-      - uses: superfly/flyctl-actions/setup-flyctl@63da3ecc5e2793b98a3f2519b3d75d4f4c11cec2
-      - run: flyctl deploy --remote-only
+      - name: Build static site
+        run: mix build
         env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          MIX_ENV: prod
+      - name: Upload site artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: _site
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
