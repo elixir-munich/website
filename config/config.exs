@@ -1,64 +1,31 @@
-# This file is responsible for configuring your application
-# and its dependencies with the aid of the Config module.
-#
-# This configuration file is loaded before any dependency and
-# is restricted to this project.
-
-# General application configuration
 import Config
 
-config :elixir_munich,
-  generators: [timestamp_type: :utc_datetime]
+config :tableau, :config,
+  url: "http://localhost:4999",
+  include_dir: "extra",
+  out_dir: "_site"
 
-# Configures the endpoint
-config :elixir_munich, ElixirMunichWeb.Endpoint,
-  url: [host: "localhost"],
-  adapter: Bandit.PhoenixAdapter,
-  render_errors: [
-    formats: [html: ElixirMunichWeb.ErrorHTML, json: ElixirMunichWeb.ErrorJSON],
-    layout: false
-  ],
-  pubsub_server: ElixirMunich.PubSub,
-  live_view: [signing_salt: "zcuO2DSW"]
-
-# Configures the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-config :elixir_munich, ElixirMunich.Mailer, adapter: Swoosh.Adapters.Local
-
-# Configure esbuild (the version is required)
-config :esbuild,
-  version: "0.25.4",
-  elixir_munich: [
-    args:
-      ~w(js/app.js --bundle --target=es2022 --outdir=../priv/static/assets/js --external:/fonts/* --external:/images/* --alias:@=.),
-    cd: Path.expand("../assets", __DIR__),
-    env: %{"NODE_PATH" => [Path.expand("../deps", __DIR__), Mix.Project.build_path()]}
+config :tableau, :reloader,
+  patterns: [
+    ~r"^lib/.*.ex",
+    ~r"^assets/.*.(css|js)",
+    ~r"^extra/.*"
   ]
 
-# Configure tailwind (the version is required)
+config :tableau, :assets, tailwind: {Tailwind, :install_and_run, [:elixir_munich, ~w(--watch)]}
+
+# The site has no Markdown pages or posts.
+config :tableau, Tableau.PageExtension, enabled: false
+config :tableau, Tableau.PostExtension, enabled: false
+
 config :tailwind,
-  version: "4.1.7",
+  version: "4.3.5",
   elixir_munich: [
     args: ~w(
       --input=assets/css/app.css
-      --output=priv/static/assets/css/app.css
+      --output=_site/css/app.css
     ),
     cd: Path.expand("..", __DIR__)
   ]
 
-# Configures Elixir's Logger
-config :logger, :default_formatter,
-  format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
-
-# Use Jason for JSON parsing in Phoenix
-config :phoenix, :json_library, Jason
-
-# Import environment specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
